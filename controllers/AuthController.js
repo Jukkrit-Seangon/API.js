@@ -64,5 +64,5 @@ const login = (req, res, next) => {
 
 }
 module.exports ={
-    register
+    register,login
 }
