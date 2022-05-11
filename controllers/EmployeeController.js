@@ -17,8 +17,11 @@ const index = (req, res, next) => {
 }
 
 const show = (req, res, next) =>{
-    let employeeID = req.body.employeeID
-    Employee.findById(employeeID)
+   
+    let _id = req.body._id
+    Employee.findById(_id)
+    //let employeeID = req.body.employeeID
+    //Employee.findById(employeeID)
     .then(response =>{
         res.json({
             response
@@ -35,6 +38,7 @@ const show = (req, res, next) =>{
 //add new Employee
 const store = (req, res, next) =>{
     let employee = new Employee({
+       // employeeID:req.body.employeeID,
         name: req.body.name,
         designation: req.body.designation,
         email: req.body.email,
@@ -66,7 +70,7 @@ const store = (req, res, next) =>{
 // update an Employee
 
 const update = (req, res, next) =>{
-    let employeeID = req.body.employeeID
+    let id = req.body._id
     let updateData = {
         name: req.body.name,
         designation: req.body.designation,
@@ -75,7 +79,7 @@ const update = (req, res, next) =>{
         age: req.body.age
     }
 
-    Employee.findByIdAndUpdate(employeeID, {$set: updateData})
+    Employee.findByIdAndUpdate(id, {$set: updateData})
     .then(() =>{
         res.json({
             message: 'Employee update Successfully'
@@ -91,10 +95,10 @@ const update = (req, res, next) =>{
 //delete an employee
 
 const destroy = (req, res, next) =>{
-    let employeeID = req.body.employeeID
-    Employee.findByIdAndRemove(employee)
+    let _id = req.body._id
+    Employee.findByIdAndRemove(_id)
     .then(()=>{
-        req.json({
+        res.json({
             message: 'Employee deleted Successfully'
         })
     })
