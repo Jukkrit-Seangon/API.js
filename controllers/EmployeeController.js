@@ -70,8 +70,8 @@ const store = (req, res, next) =>{
 // update an Employee
 
 const update = (req, res, next) =>{
-    let id = req.body._id
-    let updateData = {
+    let _id = req.body._id
+    updateData = {
         name: req.body.name,
         designation: req.body.designation,
         email: req.body.email,
@@ -79,7 +79,7 @@ const update = (req, res, next) =>{
         age: req.body.age
     }
 
-    Employee.findByIdAndUpdate(id, {$set: updateData})
+    Employee.findByIdAndUpdate(_id,{$set:updateData })
     .then(() =>{
         res.json({
             message: 'Employee update Successfully'
